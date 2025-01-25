@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open in External Browser</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #333;
+      font-size: 24px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+      margin: 20px 0;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .message {
+      margin-top: 20px;
+      color: green;
+      font-size: 16px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Open in External Browser</h1>
+  <p>If you are using TikTok or any other app's internal browser, copy the link below and open it in Chrome or Safari:</p>
+  <button id="copyLinkButton">Copy Link</button>
+  <p class="message" id="copyMessage">Link copied! Open it in Chrome or Safari.</p>
+
+  <script>
+    // Посилання на ваш Telegram-канал
+    const telegramLink = "https://t.me/+eo8iW_92pmcxOWQy";
+
+    // Обробник натискання кнопки
+    document.getElementById("copyLinkButton").addEventListener("click", () => {
+      // Копіюємо посилання у буфер обміну
+      navigator.clipboard.writeText(telegramLink).then(() => {
+        // Показуємо повідомлення про успішне копіювання
+        document.getElementById("copyMessage").style.display = "block";
+      }).catch(() => {
+        alert("Failed to copy the link. Please try again.");
+      });
+    });
+
+    // Додаткова перевірка User-Agent для внутрішніх браузерів
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/TikTok/i.test(userAgent)) {
+      console.log("You are using TikTok's internal browser.");
+    }
+  </script>
+</body>
+</html>
