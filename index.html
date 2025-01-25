@@ -3,67 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open in Chrome</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
-      background-color: #f4f4f9;
-    }
-    button {
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .message {
-      margin-top: 20px;
-      color: #333;
-    }
-  </style>
+  <title>Open Telegram</title>
 </head>
 <body>
-  <h1>Open in Google Chrome</h1>
-  <p>Click the button below to open the link in Google Chrome.</p>
-  <button id="open-chrome">Open Wikipedia</button>
-  <div class="message" id="message"></div>
+  <h1>Join Telegram Channel</h1>
+  <button id="open-telegram">Join Telegram</button>
 
   <script>
-    document.getElementById('open-chrome').addEventListener('click', function() {
-      const url = 'https://t.me/+eo8iW_92pmcxOWQy';
-      const intentUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end`;
-      const iosChromeUrl = `googlechrome://${url.replace(/^https?:\/\//, '')}`;
+    document.getElementById('open-telegram').addEventListener('click', () => {
+      const telegramLink = 'https://tinyurl.com/3t6b32vd; // Заміни на своє посилання
+      const intentUrl = `intent://${telegramLink.replace(/^https?:\/\//, '')}#Intent;package=org.telegram.messenger;end`;
+      const iosTelegramLink = `tg://resolve?domain=+eo8iW_92pmcxOWQy`; // Замінити на назву вашого каналу
 
-      // Визначаємо платформу користувача
+      // Визначаємо платформу
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
       if (/android/i.test(userAgent)) {
-        // Якщо Android, пробуємо відкрити через intent://
+        // Android: використовуємо intent:// для відкриття Telegram
         window.location.href = intentUrl;
       } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-        // Якщо iOS, пробуємо відкрити через googlechrome://
-        window.location.href = iosChromeUrl;
+        // iOS: використовуємо tg:// для відкриття Telegram
+        window.location.href = iosTelegramLink;
 
-        // Через затримку, якщо Chrome не відкрився, відкриємо в Safari
+        // Якщо не вдалося, спробуємо через веб-версію
         setTimeout(() => {
-          window.location.href = url;
+          window.location.href = telegramLink;
         }, 500);
       } else {
-        // Якщо інша платформа, просто відкриваємо посилання
-        window.location.href = url;
+        // Для інших платформ
+        window.location.href = telegramLink;
       }
-
-      // Повідомлення користувачу (у випадку, якщо нічого не відбулося)
-      const message = document.getElementById('message');
-      message.textContent = "If the link doesn't open, please open it manually in Google Chrome.";
     });
   </script>
 </body>
