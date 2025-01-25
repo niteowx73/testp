@@ -36,30 +36,15 @@
 </head>
 <body>
   <h1>Join Our Telegram Channel</h1>
-  <p>Click the button below to open our Telegram channel in the app or in Chrome.</p>
+  <p>Click the button below to open our Telegram channel.</p>
   <button id="openTelegram">Open in Telegram</button>
 
   <script>
     document.getElementById("openTelegram").addEventListener("click", function () {
-      const telegramAppLink = "tg://join?invite=eo8iW_92pmcxOWQy"; // Telegram-додаток
-      const telegramWebLink = "https://t.me/+eo8iW_92pmcxOWQy"; // Веб-посилання
+      const shortenedLink = "https://bit.ly/telegram-channel"; // Замініть на ваше скорочене посилання
 
-      // Перевіряємо, чи користувач у внутрішньому браузері
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const isTikTok = /TikTok/i.test(userAgent);
-
-      if (isTikTok) {
-        alert("Please open this page in Chrome or Safari for the best experience.");
-        window.location.href = telegramWebLink; // Відкриває Telegram Web для TikTok
-      } else {
-        // Переадресовуємо на Telegram-додаток
-        window.location.href = telegramAppLink;
-
-        // Резервне перенаправлення на веб-версію, якщо додаток недоступний
-        setTimeout(() => {
-          window.location.href = telegramWebLink;
-        }, 2000);
-      }
+      // Відкриваємо скорочене посилання
+      window.location.href = shortenedLink;
     });
   </script>
 </body>
