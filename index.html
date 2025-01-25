@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirect to Telegram</title>
+  <title>Приєднуйтесь до Telegram-каналу</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -32,19 +32,37 @@
     button:hover {
       background-color: #0056b3;
     }
+    .info {
+      font-size: 16px;
+      color: #666;
+      margin-top: 20px;
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
-  <h1>Join Our Telegram Channel</h1>
-  <p>Click the button below to open our Telegram channel.</p>
-  <button id="openTelegram">Open in Telegram</button>
+  <h1>Приєднуйтесь до нашого Telegram-каналу</h1>
+  <p>Натисніть кнопку нижче, щоб скопіювати посилання та відкрити його вручну в Telegram або Chrome.</p>
+  <button id="copyLink">Копіювати посилання</button>
+  <p class="info" id="instructions" style="display: none;">
+    Посилання скопійовано! Відкрийте Telegram, вставте посилання в браузер або безпосередньо в Telegram, щоб приєднатися.
+  </p>
 
   <script>
-    document.getElementById("openTelegram").addEventListener("click", function () {
-      const shortenedLink = "https://bit.ly/3PSg6uQ"; // Замініть на ваше скорочене посилання
+    document.getElementById("copyLink").addEventListener("click", function () {
+      const telegramLink = "https://t.me/+eo8iW_92pmcxOWQy"; // Ваше посилання на канал
 
-      // Відкриваємо скорочене посилання
-      window.location.href = shortenedLink;
+      // Копіюємо посилання у буфер обміну
+      navigator.clipboard.writeText(telegramLink).then(() => {
+        // Відображаємо інструкцію
+        const instructions = document.getElementById("instructions");
+        instructions.style.display = "block";
+      }).catch(err => {
+        alert("Не вдалося скопіювати посилання. Будь ласка, спробуйте ще раз вручну.");
+        console.error("Помилка копіювання в буфер обміну:", err);
+      });
     });
   </script>
 </body>
