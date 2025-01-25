@@ -1,1 +1,65 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open in Chrome</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <button id="open-in-chrome">Open Wikipedia in Chrome</button>
+
+  <script>
+    document.getElementById('open-in-chrome').addEventListener('click', () => {
+      const url = 'https://www.wikipedia.org'; // Заміна на потрібне посилання
+
+      // Для Android: спробуємо відкрити в Google Chrome за допомогою intent://
+      const intentUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end`;
+
+      // Для iOS: використання звичайного посилання для відкриття в браузері
+      const iosChromeUrl = 'googlechrome://www.wikipedia.org'; 
+
+      // Перевірка користувача на Android
+      if (navigator.userAgent.match(/android/i)) {
+        window.location.href = intentUrl; // Відкриваємо через intent для Android
+      }
+      // Перевірка користувача на iOS
+      else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+        setTimeout(function() {
+          window.location.href = iosChromeUrl; // Спробуємо відкрити через googlechrome:// на iOS
+        }, 25);
+        setTimeout(function() {
+          window.location.href = url; // Якщо Chrome не відкрився, відкриваємо через Safari
+        }, 500);
+      } else {
+        // Для інших платформ, відкриваємо через стандартне посилання
+        window.location.href = url;
+      }
+    });
+  </script>
+</body>
+</html>
