@@ -3,35 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open Telegram</title>
+  <title>Join Private Telegram Channel</title>
 </head>
 <body>
-  <h1>Join Telegram Channel</h1>
-  <button id="open-telegram">Join Telegram</button>
+  <h1>Join our Telegram Channel</h1>
+  <button id="join-telegram">Join Now</button>
 
   <script>
-    document.getElementById('open-telegram').addEventListener('click', () => {
-      const telegramLink = 'https://tinyurl.com/3t6b32vd; // Заміни на своє посилання
-      const intentUrl = `intent://${telegramLink.replace(/^https?:\/\//, '')}#Intent;package=org.telegram.messenger;end`;
-      const iosTelegramLink = `tg://resolve?domain=+eo8iW_92pmcxOWQy`; // Замінити на назву вашого каналу
+    document.getElementById('join-telegram').addEventListener('click', () => {
+      const inviteLink = 'https://t.me/joinchat/+eo8iW_92pmcxOWQy'; // Замініть на своє запрошення
+      const tgSchemeLink = 'tg://join?invite=+eo8iW_92pmcxOWQy'; // Замініть на свій код запрошення
 
-      // Визначаємо платформу
+      // Визначаємо пристрій
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
       if (/android/i.test(userAgent)) {
-        // Android: використовуємо intent:// для відкриття Telegram
-        window.location.href = intentUrl;
+        // Android: використовуємо tg://
+        window.location.href = tgSchemeLink;
       } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-        // iOS: використовуємо tg:// для відкриття Telegram
-        window.location.href = iosTelegramLink;
+        // iOS: використовуємо tg://
+        window.location.href = tgSchemeLink;
 
-        // Якщо не вдалося, спробуємо через веб-версію
+        // Якщо Telegram не відкрився, перенаправляємо на веб-версію
         setTimeout(() => {
-          window.location.href = telegramLink;
+          window.location.href = inviteLink;
         }, 500);
       } else {
-        // Для інших платформ
-        window.location.href = telegramLink;
+        // Інші платформи: відкриваємо веб-версію
+        window.location.href = inviteLink;
       }
     });
   </script>
