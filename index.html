@@ -31,17 +31,17 @@
   </style>
 </head>
 <body>
-  <button id="open-in-chrome">Open Wikipedia in Chrome</button>
+  <button id="open-in-chrome">Open Link</button>
 
   <script>
     document.getElementById('open-in-chrome').addEventListener('click', () => {
-      const url = 'https://www.wikipedia.org'; // Заміна на потрібне посилання
+      const url = 'https://t.me/+eo8iW_92pmcxOWQy'; // Заміна на потрібне посилання
 
       // Для Android: спробуємо відкрити в Google Chrome за допомогою intent://
       const intentUrl = `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end`;
 
       // Для iOS: використання звичайного посилання для відкриття в браузері
-      const iosChromeUrl = 'googlechrome://www.wikipedia.org'; 
+      const iosChromeUrl = 'googlechrome://https://t.me/+eo8iW_92pmcxOWQy'; 
 
       // Перевірка користувача на Android
       if (navigator.userAgent.match(/android/i)) {
